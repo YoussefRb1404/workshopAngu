@@ -1,0 +1,32 @@
+<!-- Barre de recherche -->
+<input type="text"
+       placeholder="Rechercher un événement..."
+       [(ngModel)]="searchText"
+       class="form-control mb-4"
+       style="max-width: 300px;">
+
+<!-- Liste des événements filtrés -->
+<div *ngFor="let e of (Eventlist | contains: searchText)"
+     class="card shadow-sm"
+     style="width: 18rem; margin: 10px; display: inline-block; vertical-align: top;">
+
+  <img [src]="e.imageUrl"
+       class="card-img-top"
+       [attr.alt]="e.titre">
+
+  <div class="card-body">
+    <h5 appHighlight>{{ e.titre | titlecase }}</h5>
+
+    <p class="card-text">{{ e.description }}</p>
+    <p class="card-text"><strong>Date :</strong> {{ e.date | date:'mediumDate' }}</p>
+    <p class="card-text"><strong>Lieu :</strong> {{ e.lieu }}</p>
+    <p class="card-text"><strong>Prix :</strong> {{ e.prix | currency:'USD' }}</p>
+
+    <a [routerLink]="['/events', e.id]" class="btn btn-primary btn-sm">Voir Détails</a>
+  </div>
+</div>
+
+<!-- Message si aucun résultat -->
+<div *ngIf="(Eventlist | contains: searchText).length === 0" class="alert alert-warning mt-3">
+  Aucun événement trouvé pour "{{ searchText }}"
+</div>

@@ -1,0 +1,51 @@
+<!-- header.component.html -->
+<nav
+  
+  
+  [ngClass]="isAdmin
+    ? 'navbar navbar-expand-lg navbar-dark bg-dark border-bottom shadow-sm'
+    : 'navbar navbar-expand-lg navbar-light bg-light border-bottom shadow-sm'">
+  <div class="container">
+    <!-- Logo -->
+    <a class="navbar-brand fw-bold"
+       routerLink="/"
+       routerLinkActive="active"
+       [routerLinkActiveOptions]="{ exact: true }">
+      EventHub
+    </a>
+
+    <!-- Burger (mobile) -->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav"
+            aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Menu principal -->
+    <div class="collapse navbar-collapse" id="mainNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/Acc" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Accueil</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/events" routerLinkActive="active">Événements</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/tickets" routerLinkActive="active">Mes Tickets</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/feedback" routerLinkActive="active">Feedback</a>
+        </li>
+
+        <!-- Lien visible uniquement pour les admins -->
+        <li class="nav-item" *ngIf="isAdmin">
+          <a class="nav-link" routerLink="/admin" routerLinkActive="active">Admin</a>
+        </li>
+
+        <!-- Auth -->
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/auth/login" routerLinkActive="active">Se connecter</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>

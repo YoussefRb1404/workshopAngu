@@ -1,0 +1,42 @@
+<!-- app.component.html -->
+<div [ngClass]="{ 'dark-mode': isDarkMode, 'light-mode': !isDarkMode }">
+  
+  <!-- Bouton pour changer de thème -->
+  <button (click)="toggleTheme()" class="btn btn-secondary m-3">
+    {{ isDarkMode ? 'Mode clair' : 'Mode sombre' }}
+  </button>
+
+  <!-- Section Hero -->
+  <section class="py-5 text-center">
+    <div class="container">
+      <h1 class="display-5 fw-bold" appCustomDirective>Bienvenue sur EventHub</h1>
+      <p class="lead mt-3">
+        La plateforme pour créer, gérer et participer à vos événements préférés.<br>
+        Réservez vos tickets en ligne et partagez vos retours en toute simplicité.
+      </p>
+      <div class="mt-4">
+        <a href="/events" class="btn btn-primary btn-lg">Découvrir les événements</a>
+        <a href="/auth/register" class="btn btn-outline-secondary btn-lg ms-2">Créer un compte</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section Features -->
+  <section class="container py-5">
+    <div class="row g-4">
+      <div class="col-md-4">
+        <div class="card h-100 shadow-sm">
+          <img src="/images/ticket.png" class="card-img-top" alt="Tickets">
+          <div class="card-body">
+            <h5 class="card-title">Achetez vos tickets</h5>
+            <p class="card-text">Réservez en quelques clics, rapidement et en toute sécurité.</p>
+            <a href="/tickets" class="btn btn-primary btn-sm">Mes Tickets</a>
+          </div>
+        </div>
+      </div>
+      <!-- ... autres cartes ... -->
+    </div>
+    <app-card></app-card>
+  </section>
+
+</div>

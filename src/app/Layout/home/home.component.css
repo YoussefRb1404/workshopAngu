@@ -1,0 +1,28 @@
+/* app.component.css */
+
+/* Light mode */
+.light-mode {
+  background-color: #f8f9fa;
+  color: #212529;
+}
+
+/* Dark mode */
+.dark-mode {
+  background-color: #121212;
+  color: #f1f1f1;
+}
+
+.dark-mode .card {
+  background-color: #1e1e1e;
+  color: #f1f1f1;
+}
+
+.dark-mode .btn-outline-secondary {
+  border-color: #f1f1f1;
+  color: #f1f1f1;
+}
+
+.dark-mode .btn-outline-primary {
+  border-color: #f1f1f1;
+  color: #f1f1f1;
+}
