@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDate;
+import java.util.Set;
 
 @Entity
 @Getter
@@ -18,7 +19,10 @@ public class Bloc {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long idBloc;
     String nomBloc;
-    long capaciteBloc;
+    Long capaciteBloc;
     @ManyToOne
     Foyer foyer;
+    @OneToMany(mappedBy= "bloc")
+    Set<Chambre> chambres;
+
 }

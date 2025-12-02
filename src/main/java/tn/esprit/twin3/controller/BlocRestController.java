@@ -41,9 +41,13 @@ public class BlocRestController {
     List <Bloc> viewBlocByFoyer(@PathVariable("nom_Foyer") String nomFoyer) {
         return blocInterface.viewBlocByFoyer(nomFoyer);
     }
-@GetMapping(path ="/bloc/{nom_bloc}" )
-Bloc viewBlocByNom(@PathVariable("nom_bloc") String nomBloc) {
-        return blocInterface.viewBlocByNom(nomBloc);
-}
+    @GetMapping(path ="/bloc/{nom_bloc}" )
+    Bloc viewBlocByNom(@PathVariable("nom_bloc") String nomBloc) {
+            return blocInterface.viewBlocByNom(nomBloc);
+    }
+    @PutMapping(path = "/bloc/{id_bloc}")
+    Bloc affecterChambresABloc(@PathVariable("id_bloc")Long idBloc,@RequestBody List<Long> numChambre ) {
 
+        return blocInterface.affecterChambresABloc(numChambre, idBloc);
+    }
 }

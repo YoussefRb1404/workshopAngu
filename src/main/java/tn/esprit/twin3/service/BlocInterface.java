@@ -12,5 +12,7 @@ public interface BlocInterface {
     List<Bloc> viewAllBloc();
     Bloc viewBlocByNom(String nomBloc);
     List<Bloc> viewBlocByFoyer(String nomFoyer);
+    Bloc affecterChambresABloc(List<Long> numChambre, long idBloc) ;
+
 
 }

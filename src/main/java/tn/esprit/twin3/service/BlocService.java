@@ -1,9 +1,15 @@
 package tn.esprit.twin3.service;
 
 import jakarta.persistence.EntityNotFoundException;
+import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 import tn.esprit.twin3.entity.Bloc;
+import tn.esprit.twin3.entity.Chambre;
+import tn.esprit.twin3.entity.Foyer;
+import tn.esprit.twin3.entity.Universite;
 import tn.esprit.twin3.repository.BlocRepository;
+import tn.esprit.twin3.repository.ChambreRepository;
+import tn.esprit.twin3.repository.UniversiteRepository;
 
 import java.util.List;
 
@@ -11,10 +17,12 @@ import java.util.List;
 public class BlocService implements BlocInterface {
 
     private final BlocRepository blocRepository;
+    private final ChambreRepository chambreRepository;
 
-    public BlocService(BlocRepository blocRepository) {
-        this.blocRepository = blocRepository;
-    }
+        public BlocService(BlocRepository blocRepository, ChambreRepository chambreRepository) {
+            this.blocRepository = blocRepository;
+            this.chambreRepository= chambreRepository;
+        }
 
     @Override
     public Bloc addBloc(Bloc bloc) {
@@ -52,4 +60,17 @@ public class BlocService implements BlocInterface {
     public List <Bloc> viewBlocByFoyer(String nomFoyer) {
         return blocRepository.findByFoyerNomFoyer(nomFoyer);
     }
+    @Override
+    @Transactional
+    public Bloc affecterChambresABloc(List<Long> numChambre, long idBloc) {
+            Bloc bloc = blocRepository.findById(idBloc).orElseThrow();
+            List<Chambre> chambres = chambreRepository.findChambreByNum(numChambre);
+            for (Chambre chambre : chambres) {
+            chambre.setBloc(bloc);
+        }
+        bloc.getChambres().addAll(chambres);
+
+        return bloc;
+    }
+
 }

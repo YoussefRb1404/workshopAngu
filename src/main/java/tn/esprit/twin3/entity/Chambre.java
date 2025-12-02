@@ -24,4 +24,6 @@ public class Chambre {
     typeChambre typeChambre;
     @OneToMany
     Set<Reservation> reservations;
+    @ManyToOne
+    Bloc bloc;
 }
